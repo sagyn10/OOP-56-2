@@ -34,16 +34,13 @@ class Friend(Person):
         self.hobby = hobby
 
     def introduce(self):
-        education = "У меня есть высшее образование." if self._Person__higher_education else "У меня нет высшего образования."
-        print(f"Привет, меня зовут {self.name}. Моя профессия {self._Person__occupation}. Мое хобби {self.hobby}. {education}")
+        education = "У меня есть высшее образование." if self.higher_education else "У меня нет высшего образования."
+        print(f"Привет, меня зовут {self.name}. Моя профессия {self.occupation}. Мое хобби {self.hobby}. {education}")
 
 
 # Примеры
 cl1 = Classmate("Иван", "20.02.2000", "студент", True, "11D")
 cl1.introduce()
-# Привет, меня зовут Иван. Моя профессия студент. Я учился с Игорем в группе 11D. У меня есть высшее образование.
-
 fr1 = Friend("Айбек", "20.02.2000", "студент", True, "футбол")
 fr1.introduce()
-# Привет, меня зовут Айбек. Моя профессия студент. Мое хобби футбол. У меня есть высшее образование.
 print(fr1.age)  # 25 (или сколько по текущей дате)
