@@ -112,31 +112,100 @@
 # p.name = ("Бакыт")
 # print(p.name)
 
-from datetime import datetime as dt
+# from datetime import datetime as dt
+#
+# def checktime(func):
+#     def wrapper(*args, **kwargs):
+#         now = dt.now()
+#         time_str = now.strftime("%H:%M:%S %d/%m/%Y")
+#         print(f"Функция была вызвана в {time_str}")
+#         result = func(*args, **kwargs)  # вызываем саму функцию
+#         return result
+#
+#     return wrapper
+#
+#
+# # Пример использования декоратора
+# @checktime
+# def hello_world():
+#     print("hello world")
+#
+# # Вызов функции
+# hello_world()
 
-def checktime(func):
+
+# home work
+
+# from time import time
+#
+# def log_time_to_file(funk):
+#     def wrapper(*args, **kwargs):
+#         start_time = time()
+#         result = funk(*args, **kwargs)
+#         end_time = time()
+#         duration = end_time - start_time
+#
+#         log_massage = (f"Функция '{funk.__name__}' выполнилась за {duration:4f} сек.")
+#         print(log_massage.strip())
+#         with open("Log.txt", "a", encoding="utf-8") as f:
+#             f.write(log_massage)
+#
+#         return result
+#     return wrapper
+#
+# @log_time_to_file
+# def greet(name):
+#     print(f"Привет, {name}!")
+#
+# @log_time_to_file
+# def add(a, b):
+#     return a + b
+#
+# greet("Амантур")
+# print(add(2, 4))
+
+
+
+# from time import time
+#
+# def timer(funk):
+#     def wrapper(*args, **kwargs):
+#         start_time = time()
+#         result = funk(*args, **kwargs)
+#         end_time = time()
+#         duration = end_time - start_time
+#         print(f"Функция '{funk.__name__}' выполнилась за {duration:4f} сек.")
+#         return result
+#     return wrapper
+#
+# @timer
+# def my_task():
+#     for i in range(1000000):
+#         pass
+#
+# my_task()
+
+
+
+def count_calls(func):
+    count = 0
+
     def wrapper(*args, **kwargs):
-        now = dt.now()
-        time_str = now.strftime("%H:%M:%S %d/%m/%Y")
-        print(f"Функция была вызвана в {time_str}")
-        result = func(*args, **kwargs)  # вызываем саму функцию
+        nonlocal count
+        count += 1
+        result = func(*args, **kwargs)
+        with open("counter.txt", "w", encoding="utf-8") as f:
+            f.write(f"Функция '{func.__name__}' была вызвана {count} раз(а).\n")
         return result
-
     return wrapper
 
+@count_calls
+def hello():
+    print("Привет!")
 
-# Пример использования декоратора
-@checktime
-def hello_world():
-    print("hello world")
-
-# Вызов функции
-hello_world()
-
-
-
-
-
+hello()
+hello()
+hello()
 
 
 
