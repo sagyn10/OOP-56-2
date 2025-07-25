@@ -186,26 +186,26 @@
 # my_task()
 
 
-
-def count_calls(func):
-    count = 0
-
-    def wrapper(*args, **kwargs):
-        nonlocal count
-        count += 1
-        result = func(*args, **kwargs)
-        with open("counter.txt", "w", encoding="utf-8") as f:
-            f.write(f"Функция '{func.__name__}' была вызвана {count} раз(а).\n")
-        return result
-    return wrapper
-
-@count_calls
-def hello():
-    print("Привет!")
-
-hello()
-hello()
-hello()
+#
+# def count_calls(func):
+#     count = 0
+#
+#     def wrapper(*args, **kwargs):
+#         nonlocal count
+#         count += 1
+#         result = func(*args, **kwargs)
+#         with open("counter.txt", "w", encoding="utf-8") as f:
+#             f.write(f"Функция '{func.__name__}' была вызвана {count} раз(а).\n")
+#         return result
+#     return wrapper
+#
+# @count_calls
+# def hello():
+#     print("Привет!")
+#
+# hello()
+# hello()
+# hello()
 
 
 
